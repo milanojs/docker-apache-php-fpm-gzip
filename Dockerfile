@@ -29,18 +29,23 @@ apt-get clean && \
 apt-get autoclean && \
 rm -r /var/lib/apt/lists/*
 
+# Enable Apache Mods
+RUN a2enmod actions fastcgi alias deflate
 
 #Add config file for php5-fpm
 
 #Add config file for php5-fpm in mods available apache
 
+#
+RUN service apache2 start
 
-RUN mkdir -p /etc/varnish/sites
-ADD default.vcl /etc/varnish/default.vcl
+
+#RUN mkdir -p /etc/varnish/sites
+#ADD default.vcl /etc/varnish/default.vcl
 
 
 # Supervisor Config
-ADD ./supervisord.conf /etc/supervisord.conf
+#ADD ./supervisord.conf /etc/supervisord.conf
 
 
 # Setup Volume
@@ -54,4 +59,4 @@ ADD ./supervisord.conf /etc/supervisord.conf
 #EXPOSE 443
 EXPOSE 80
 
-CMD ["/bin/bash", "/start.sh"]
+#CMD ["/bin/bash", "/start.sh"]
