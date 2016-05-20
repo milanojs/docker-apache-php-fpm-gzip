@@ -31,8 +31,11 @@ rm -r /var/lib/apt/lists/*
 RUN a2enmod actions fastcgi alias deflate
 
 #Add config file for php5-fpm
+ADD ./php5/php-fpm.conf /etc/php5/fpm/
+ADD ./php5/www.conf /etc/php5/fpm/pool.d/
 
 #Add config file for php5-fpm in mods available apache
+ADD ./apache2/conf-available/php5-fpm.conf /etc/apache2/conf-available/
 
 # Running apache2 and php5 fpm
 RUN service apache2 start && \ service php5-fpm start
@@ -42,9 +45,6 @@ RUN update-rc.d apache2 enable
 
 # Enable php5-fpm
 RUN update-rc.d php5-fpm enable
-
-# Supervisor Config
-#ADD ./supervisord.conf /etc/supervisord.conf
 
 # add test PHP file
 RUN rm /var/www/html/index.html
