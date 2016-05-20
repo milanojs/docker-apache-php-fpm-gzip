@@ -1,17 +1,12 @@
 FROM ubuntu:14.04
 MAINTAINER Juan Milano <juan_milano@hotmail.com>
 
-
-ENV VARNISH_BACKEND_PORT 8080
-ENV VARNISH_BACKEND_IP 127.0.0.1
-ENV VARNISH_PORT 80
-
 # Surpress Upstart errors/warning
 RUN dpkg-divert --local --rename --add /sbin/initctl
 RUN ln -sf /bin/true /sbin/initctl
 
 # Let the conatiner know that there is no tty
-ENV DEBIAN_FRONTEND noninteractive
+# ENV DEBIAN_FRONTEND noninteractive
 
 # Update base image
 # Add sources for latest nginx
