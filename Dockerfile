@@ -8,13 +8,19 @@ RUN ln -sf /bin/true /sbin/initctl
 # Let the conatiner know that there is no tty
 # ENV DEBIAN_FRONTEND noninteractive
 
+# Add the Multiverse repositories
+RUN
+echo "deb http://archive.ubuntu.com/ubuntu/ trusty multiverse" > /etc/apt/sources.list
+echo "deb-src http://archive.ubuntu.com/ubuntu/ trusty multiverse"  > /etc/apt/sources.list
+echo "deb http://archive.ubuntu.com/ubuntu/ trusty-updates multiverse"  > /etc/apt/sources.list
+echo "deb-src http://archive.ubuntu.com/ubuntu/ trusty-updates multiverse"  > /etc/apt/sources.list
+
+
 # Update base image
-# Add sources for latest nginx
 # Install software requirements
+
 RUN apt-get update && \
-apt-get install -y software-properties-common && \
-nginx=stable && \
-add-apt-repository ppa:nginx/$nginx && \
+
 apt-get update && \
 apt-get upgrade -y && \
 BUILD_PACKAGES="php5-fpm git php5-mysql php5-mysql php-apc php5-curl php5-gd php5-intl php5-mcrypt php5-memcache php5-sqlite php5-tidy php5-xmlrpc php5-xsl php5-pgsql php5-mongo pwgen" && \
