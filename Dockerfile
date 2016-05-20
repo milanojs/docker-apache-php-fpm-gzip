@@ -11,17 +11,18 @@ RUN ln -sf /bin/true /sbin/initctl
 
 # Add the Multiverse repositories
 RUN apt-get update
-RUN /bin/echo 'deb http://archive.ubuntu.com/ubuntu/ trusty multiverse' > /etc/apt/sources.list && \
-/bin/echo 'deb-src http://archive.ubuntu.com/ubuntu/ trusty multiverse'  > /etc/apt/sources.list && \
-/bin/echo 'deb http://archive.ubuntu.com/ubuntu/ trusty-updates multiverse'  > /etc/apt/sources.list && \
-/bin/echo 'deb-src http://archive.ubuntu.com/ubuntu/ trusty-updates multiverse'  > /etc/apt/sources.list
+RUN /bin/echo '##### Multiverse Repo' >> /etc/apt/sources.list && \
+/bin/echo 'deb http://archive.ubuntu.com/ubuntu/ trusty multiverse' >> /etc/apt/sources.list && \
+/bin/echo 'deb-src http://archive.ubuntu.com/ubuntu/ trusty multiverse'  >> /etc/apt/sources.list && \
+/bin/echo 'deb http://archive.ubuntu.com/ubuntu/ trusty-updates multiverse'  >> /etc/apt/sources.list && \
+/bin/echo 'deb-src http://archive.ubuntu.com/ubuntu/ trusty-updates multiverse'  >> /etc/apt/sources.list
 
 # Update base image
 # Install software requirements
 
 RUN apt-get update && \
 apt-get upgrade -y && \
-BUILD_PACKAGES="apache2-mpm-event libapache2-mod-fastcgi php5-fpm php5 php5-curl php5-gd php5-imagick" && \
+BUILD_PACKAGES="apache2 libapache2-mod-fastcgi php5-fpm php5 php5-curl php5-gd php5-imagick" && \
 apt-get -y install $BUILD_PACKAGES && \
 apt-get autoremove -y && \
 apt-get clean && \
