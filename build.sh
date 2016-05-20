@@ -9,4 +9,4 @@ TAG=$1
 #If $TAG is null set default value latest
 : ${TAG:=latest}
 
-docker build -t chenweishi/$IMAGE_NAME:$TAG $SCRIPT_HOME
+docker build -t jmilano/$IMAGE_NAME:$TAG $SCRIPT_HOME
