@@ -12,8 +12,7 @@ RUN ln -sf /bin/true /sbin/initctl
 RUN /bin/echo 'deb http://archive.ubuntu.com/ubuntu/ trusty multiverse' > /etc/apt/sources.list && \
 /bin/echo 'deb-src http://archive.ubuntu.com/ubuntu/ trusty multiverse'  > /etc/apt/sources.list && \
 /bin/echo 'deb http://archive.ubuntu.com/ubuntu/ trusty-updates multiverse'  > /etc/apt/sources.list && \
-/bin/echo 'deb-src http://archive.ubuntu.com/ubuntu/ trusty-updates multiverse'  > /etc/apt/sources.list && \
-
+/bin/echo 'deb-src http://archive.ubuntu.com/ubuntu/ trusty-updates multiverse'  > /etc/apt/sources.list
 
 # Update base image
 # Install software requirements
