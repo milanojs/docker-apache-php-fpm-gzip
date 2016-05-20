@@ -38,7 +38,8 @@ ADD ./php5/pool.d/www.conf /etc/php5/fpm/pool.d/
 ADD ./apache2/conf-available/php5-fpm.conf /etc/apache2/conf-available/
 
 # Running apache2 and php5 fpm
-RUN service apache2 start && \ service php5-fpm start
+RUN service apache2 start && \
+service php5-fpm start
 
 # Enable apache autostart
 RUN update-rc.d apache2 enable
