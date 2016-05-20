@@ -9,8 +9,7 @@ RUN ln -sf /bin/true /sbin/initctl
 # ENV DEBIAN_FRONTEND noninteractive
 
 # Add the Multiverse repositories
-RUN
-echo 'deb http://archive.ubuntu.com/ubuntu/ trusty multiverse' > /etc/apt/sources.list && \
+RUN echo 'deb http://archive.ubuntu.com/ubuntu/ trusty multiverse' > /etc/apt/sources.list && \
 echo 'deb-src http://archive.ubuntu.com/ubuntu/ trusty multiverse'  > /etc/apt/sources.list && \
 echo 'deb http://archive.ubuntu.com/ubuntu/ trusty-updates multiverse'  > /etc/apt/sources.list && \
 echo 'deb-src http://archive.ubuntu.com/ubuntu/ trusty-updates multiverse'  > /etc/apt/sources.list && \
