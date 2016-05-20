@@ -38,6 +38,9 @@ ADD ./php5/pool.d/www.conf /etc/php5/fpm/pool.d/
 ADD ./apache2/conf-available/php5-fpm.conf /etc/apache2/conf-available/
 RUN a2enconf php5-fpm
 
+# Setup Volume
+VOLUME ["/var/www/html/"]
+
 # add test PHP file
 RUN rm /var/www/html/index.html
 ADD ./index.php /var/www/html/
