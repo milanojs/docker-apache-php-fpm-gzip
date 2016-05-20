@@ -55,4 +55,4 @@ RUN chmod 755 /start.sh
 EXPOSE 80
 
 # Starting supervidor apache2 and php5 fpm
-#CMD ["/bin/bash", "/start.sh"]
+CMD ["/bin/bash", "/start.sh"]
