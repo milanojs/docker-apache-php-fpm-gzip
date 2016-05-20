@@ -34,27 +34,22 @@ RUN a2enmod actions fastcgi alias deflate
 
 #Add config file for php5-fpm in mods available apache
 
-#
-RUN service apache2 start
+# Running apache2 and php5 fpm
+RUN service apache2 start && \ service php5-fpm start
 
 # Enable apache autostart
-
 RUN update-rc.d apache2 enable
 
-#RUN mkdir -p /etc/varnish/sites
-#ADD default.vcl /etc/varnish/default.vcl
-
+# Enable php5-fpm
+RUN update-rc.d php5-fpm enable
 
 # Supervisor Config
 #ADD ./supervisord.conf /etc/supervisord.conf
 
-
-# Setup Volume
-#VOLUME ["/usr/share/nginx/html"]
-
 # add test PHP file
-#ADD ./index.php /usr/share/nginx/html/index.php
-#RUN chown -Rf www-data.www-data /usr/share/nginx/html/
+RUN rm /var/www/html/index.html
+ADD ./index.php /var/www/html/
+RUN chown -Rf www-data.www-data /var/www/html/
 
 # Expose Ports
 EXPOSE 80
