@@ -36,12 +36,7 @@ ADD ./php5/pool.d/www.conf /etc/php5/fpm/pool.d/
 
 #Add config file for php5-fpm in mods available apache
 ADD ./apache2/conf-available/php5-fpm.conf /etc/apache2/conf-available/
-
-# Enable apache autostart
-RUN update-rc.d apache2 enable
-
-# Enable php5-fpm
-RUN update-rc.d php5-fpm enable
+RUN a2enconf php5-fpm
 
 # add test PHP file
 RUN rm /var/www/html/index.html
