@@ -46,7 +46,7 @@ RUN update-rc.d php5-fpm enable
 # add test PHP file
 RUN rm /var/www/html/index.html
 ADD ./index.php /var/www/html/
-RUN chown -Rf www-data.www-data /var/www/html/
+RUN chown -Rf www-data:www-data /var/www/html/
 RUN chmod a+x /var/www/html/index.php
 
 # Supervisor Config
@@ -60,4 +60,4 @@ RUN chmod 755 /start.sh
 EXPOSE 80
 
 # Starting supervidor apache2 and php5 fpm
-CMD ["/bin/bash", "/start.sh"]
+#CMD ["/bin/bash", "/start.sh"]
