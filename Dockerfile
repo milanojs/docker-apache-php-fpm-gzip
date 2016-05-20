@@ -6,19 +6,17 @@ RUN dpkg-divert --local --rename --add /sbin/initctl
 RUN ln -sf /bin/true /sbin/initctl
 
 # Let the conatiner know that there is no tty
-# ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND noninteractive
 
 
 # Add the Multiverse repositories
-RUN apt-get update
 RUN /bin/echo '##### Multiverse Repo' >> /etc/apt/sources.list && \
 /bin/echo 'deb http://archive.ubuntu.com/ubuntu/ trusty multiverse' >> /etc/apt/sources.list && \
 /bin/echo 'deb-src http://archive.ubuntu.com/ubuntu/ trusty multiverse'  >> /etc/apt/sources.list && \
 /bin/echo 'deb http://archive.ubuntu.com/ubuntu/ trusty-updates multiverse'  >> /etc/apt/sources.list && \
 /bin/echo 'deb-src http://archive.ubuntu.com/ubuntu/ trusty-updates multiverse'  >> /etc/apt/sources.list
 
-# Update base image
-# Install software requirements
+# Update base image and Install software requirements
 
 RUN apt-get update && \
 apt-get upgrade -y && \
