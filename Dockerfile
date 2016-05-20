@@ -32,7 +32,7 @@ RUN a2enmod actions fastcgi alias deflate
 
 #Add config file for php5-fpm
 ADD ./php5/php-fpm.conf /etc/php5/fpm/
-ADD ./php5/www.conf /etc/php5/fpm/pool.d/
+ADD ./php5/pool.d/www.conf /etc/php5/fpm/pool.d/
 
 #Add config file for php5-fpm in mods available apache
 ADD ./apache2/conf-available/php5-fpm.conf /etc/apache2/conf-available/
