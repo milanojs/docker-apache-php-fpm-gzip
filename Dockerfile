@@ -20,7 +20,7 @@ RUN /bin/echo '##### Multiverse Repo' >> /etc/apt/sources.list && \
 
 RUN apt-get update && \
 apt-get upgrade -y && \
-BUILD_PACKAGES="apache2 libapache2-mod-fastcgi php5-fpm php5 php5-curl php5-gd php5-imagick" && \
+BUILD_PACKAGES="supervisor apache2 libapache2-mod-fastcgi php5-fpm php5 php5-curl php5-gd php5-imagick" && \
 apt-get -y install $BUILD_PACKAGES && \
 apt-get autoremove -y && \
 apt-get clean && \
@@ -49,9 +49,15 @@ ADD ./index.php /var/www/html/
 RUN chown -Rf www-data.www-data /var/www/html/
 RUN chmod a+x /var/www/html/index.php
 
+# Supervisor Config
+ADD ./supervisord.conf /etc/supervisord.conf
+
+# Start Supervisord
+ADD ./start.sh /start.sh
+RUN chmod 755 /start.sh
+
 # Expose Ports
 EXPOSE 80
 
-# Running apache2 and php5 fpm
-CMD service apache2 start
-CMD service php5-fpm start
+# Starting supervidor apache2 and php5 fpm
+CMD ["/bin/bash", "/start.sh"]
