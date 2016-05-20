@@ -53,5 +53,5 @@ RUN chmod a+x /var/www/html/index.php
 EXPOSE 80
 
 # Running apache2 and php5 fpm
-CMD service apache2 start && \
-service php5-fpm start
+CMD service apache2 start
+CMD service php5-fpm start
