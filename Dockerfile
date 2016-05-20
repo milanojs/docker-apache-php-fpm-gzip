@@ -8,7 +8,9 @@ RUN ln -sf /bin/true /sbin/initctl
 # Let the conatiner know that there is no tty
 # ENV DEBIAN_FRONTEND noninteractive
 
+
 # Add the Multiverse repositories
+RUN apt-get update
 RUN /bin/echo 'deb http://archive.ubuntu.com/ubuntu/ trusty multiverse' > /etc/apt/sources.list && \
 /bin/echo 'deb-src http://archive.ubuntu.com/ubuntu/ trusty multiverse'  > /etc/apt/sources.list && \
 /bin/echo 'deb http://archive.ubuntu.com/ubuntu/ trusty-updates multiverse'  > /etc/apt/sources.list && \
@@ -18,7 +20,6 @@ RUN /bin/echo 'deb http://archive.ubuntu.com/ubuntu/ trusty multiverse' > /etc/a
 # Install software requirements
 
 RUN apt-get update && \
-apt-get update && \
 apt-get upgrade -y && \
 BUILD_PACKAGES="apache2-mpm-event libapache2-mod-fastcgi php5-fpm php5 php5-curl php5-gd php5-imagick" && \
 apt-get -y install $BUILD_PACKAGES && \
