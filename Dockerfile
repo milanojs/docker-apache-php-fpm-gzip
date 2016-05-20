@@ -37,6 +37,9 @@ RUN a2enmod actions fastcgi alias deflate
 #
 RUN service apache2 start
 
+# Enable apache autostart
+
+RUN update-rc.d apache2 enable
 
 #RUN mkdir -p /etc/varnish/sites
 #ADD default.vcl /etc/varnish/default.vcl
@@ -54,7 +57,4 @@ RUN service apache2 start
 #RUN chown -Rf www-data.www-data /usr/share/nginx/html/
 
 # Expose Ports
-#EXPOSE 443
 EXPOSE 80
-
-#CMD ["/bin/bash", "/start.sh"]
